@@ -1,29 +1,29 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-
-import Form from './components/Form';
-import Section from './components/Section';
-import Contacts from './components/Contacts';
-import Filter from './components/Filter';
-import operation from 'redux/contacts/contacts-operations';
+import { Switch, Route } from 'react-router-dom';
+import { authOperations } from 'redux/auth';
+import HomePage from './pages/HomePage';
+import RegisterPage from './pages/RegisterPage';
+import LoginPage from './pages/LoginPage';
+import ContactsPage from './pages/ContactsPage';
+import Header from 'components/Header/Header';
 
 function App() {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    dispatch(operation.fetchContacts());
+    dispatch(authOperations.getCurrentUser());
   }, [dispatch]);
 
   return (
     <>
-      <Section title="Phonebook">
-        <Form />
-      </Section>
-
-      <Section title="Contacts">
-        <Filter />
-        <Contacts />
-      </Section>
+      <Header />
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route path="/register" component={RegisterPage} />
+        <Route path="/login" component={LoginPage} />
+        <Route path="/contacts" component={ContactsPage} />
+      </Switch>
     </>
   );
 }

@@ -5,8 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  background-image: url(./images/2.jpg);
+  /* background-image: url('https://image.freepik.com/free-vector/realistic-blue-knit-seamless-texture-seamless-pattern-for-backgrounds-wallpaper_278395-186.jpg'); */
+  background-image: url('https://steamuserimages-a.akamaihd.net/ugc/927054170186154785/A1DA4F27098F3B2713192E7131CEE2987DAFF90B/');
 }
 
 code {

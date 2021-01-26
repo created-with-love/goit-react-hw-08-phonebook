@@ -2,16 +2,8 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
 
-const styles = {
-  form: {
-    width: 320,
-  },
-  label: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginBottom: 15,
-  },
-};
+import { Button, TextField } from '@material-ui/core';
+import s from './LoginPage.module.css';
 
 export default function LoginPage() {
   const dispatch = useDispatch();
@@ -37,31 +29,50 @@ export default function LoginPage() {
   };
 
   return (
-    <div>
-      <h1>Login Page</h1>
+    <div className={s.loginBox}>
+      <div className={s.gifBox}>
+        <img
+          src="https://i.gifer.com/P3p1.gif"
+          alt="loginGif"
+          width="169"
+          height="40"
+        />
+      </div>
 
-      <form onSubmit={handleSubmit} style={styles.form} autoComplete="off">
-        <label style={styles.label}>
-          Email
-          <input
+      <form onSubmit={handleSubmit} className={s.form} autoComplete="off">
+        <label className={s.label}>
+          <TextField
             type="email"
             name="email"
+            id="outlined-basic"
             value={email}
+            label="Email"
             onChange={handleChange}
+            variant="outlined"
           />
         </label>
 
-        <label style={styles.label}>
-          Password
-          <input
+        <label className={s.label}>
+          <TextField
             type="password"
             name="password"
+            id="outlined-basic"
             value={password}
+            label="Password"
             onChange={handleChange}
+            variant="outlined"
           />
         </label>
-
-        <button type="submit">Login</button>
+        <div className={s.loginBtnBox}>
+          <Button
+            type="submit"
+            className={s.loginBtn}
+            color="primary"
+            variant="contained"
+          >
+            Login
+          </Button>
+        </div>
       </form>
     </div>
   );

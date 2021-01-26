@@ -44,7 +44,7 @@ const getCurrentUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
 
   // if token is null we won`t fetch info about user from the server
   if (persistedToken === null) {
-    return thunkAPI.rejectWithValue({ name: null, email: null });
+    return thunkAPI.rejectWithValue();
     //   return state;
   }
 

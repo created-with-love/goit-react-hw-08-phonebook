@@ -9,6 +9,7 @@ import s from './Contacts.module.css';
 import { operations } from 'redux/contacts';
 import { filteredContacts, isLoading } from 'redux/contacts/contacts-selectors';
 import Loader from '../Loader';
+import { authSelectors } from 'redux/auth';
 
 const variants = {
   hidden: {
@@ -23,8 +24,14 @@ const variants = {
 
 const Contacts = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(filteredContacts);
   const loading = useSelector(isLoading);
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+
+  React.useEffect(() => {
+    isLoggedIn && dispatch(operations.fetchContacts());
+  }, [dispatch, isLoggedIn]);
+
+  const contacts = useSelector(filteredContacts);
 
   const listClasses = classNames({
     [s.list]: true,

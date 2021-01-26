@@ -1,7 +1,6 @@
-.registrBtn {
-  margin-top: 10px;
-  width: 100%;
-  display: flex;
+.loginBox {
+  display: grid;
+  flex-wrap: wrap;
   justify-content: center;
 }
 
@@ -14,10 +13,11 @@
   text-shadow: 1px 1px 2px black, 0 0 1em red;
 }
 
-.regBox {
-  display: grid;
-  flex-wrap: wrap;
+.gifBox {
+  display: block;
   justify-content: center;
+  text-align: center;
+  margin: 20px 0 20px 0;
 }
 
 .form {
@@ -33,9 +33,15 @@
   margin-bottom: 15px;
 }
 
-.regImg {
-  display: block;
-  width: 320px;
-  margin: 20px 0 20px 0;
-  border-radius: 5px;
+.labelText {
+  font-family: 'Roboto', sans-serif;
+  color: rgb(255, 255, 255);
+  text-shadow: 1px 1px 2px black, 0 0 1em red;
+}
+
+.loginBtnBox {
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }

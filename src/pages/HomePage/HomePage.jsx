@@ -1,12 +1,8 @@
 import React from 'react';
 
+import s from './HomePage.module.css';
+
 const styles = {
-  container: {
-    minHeight: 'calc(100vh - 50px)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   title: {
     fontWeight: 500,
     fontSize: 48,
@@ -15,13 +11,26 @@ const styles = {
 };
 
 const HomePage = () => (
-  <div style={styles.container}>
-    <h1 style={styles.title}>
-      Welcome! It`s a Phonebook application
-      <span role="img" aria-label="Иконка приветствия">
-        💁‍♀️
+  <div className={s.container}>
+    <div className={s.titleContainer}>
+      <h1 className={s.title}>
+        <span className={s.titleText}> PhoneBook</span>
+      </h1>
+      <span className={s.titleDesc}>
+        One application for all your contacts.
       </span>
-    </h1>
+      <span className={s.titleDesc}>Simple. Secure. Free.</span>
+    </div>
+    <img
+      src="https://i.gifer.com/fzUl.gif"
+      alt="HomePageLogo"
+      className={s.logo}
+    />
+    <img
+      src="https://i.gifer.com/3dAZ.gif"
+      alt="HomePageLogoBig"
+      className={s.logoBig}
+    />
   </div>
 );
 

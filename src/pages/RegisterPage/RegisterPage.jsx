@@ -2,16 +2,8 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
 
-const styles = {
-  form: {
-    width: 320,
-  },
-  label: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginBottom: 15,
-  },
-};
+import s from './RegisterPage.module.css';
+import { Button, TextField } from '@material-ui/core';
 
 export default function RegisterPage() {
   const dispatch = useDispatch();
@@ -41,36 +33,58 @@ export default function RegisterPage() {
   };
 
   return (
-    <div>
-      <h1>Registration Page</h1>
+    <div className={s.regBox}>
+      <div>
+        <img
+          src="https://i.gifer.com/4yD.gif"
+          alt="registrationGif"
+          className={s.regImg}
+          width="320"
+          height="180"
+        ></img>
+      </div>
 
-      <form onSubmit={handleSubmit} style={styles.form} autoComplete="off">
-        <label style={styles.label}>
-          Name
-          <input type="text" name="name" value={name} onChange={handleChange} />
+      <form onSubmit={handleSubmit} className={s.form} autoComplete="off">
+        <label className={s.label}>
+          <TextField
+            type="text"
+            id="outlined-basic"
+            name="name"
+            value={name}
+            label="Name"
+            onChange={handleChange}
+            variant="outlined"
+          />
         </label>
 
-        <label style={styles.label}>
-          Email
-          <input
+        <label className={s.label}>
+          <TextField
             type="email"
             name="email"
+            id="outlined-basic"
             value={email}
+            label="Email"
             onChange={handleChange}
+            variant="outlined"
           />
         </label>
 
-        <label style={styles.label}>
-          Password
-          <input
+        <label className={s.label}>
+          <TextField
             type="password"
             name="password"
+            id="outlined-basic"
             value={password}
+            label="Password"
             onChange={handleChange}
+            variant="outlined"
           />
         </label>
-
-        <button type="submit">Registration</button>
+        <div className={s.registrBtn}>
+          <Button type="submit" color="primary" variant="contained">
+            Registration
+          </Button>
+        </div>
       </form>
     </div>
   );

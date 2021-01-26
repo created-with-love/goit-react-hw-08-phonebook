@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.name {
+  font-weight: 700;
+  margin-right: 12px;
+  color: #9fd9f1;
+}
+
+.avatar {
+  margin-right: 5px;
+  border-radius: 50%;
+}
+
+@media screen and (max-width: 500px) {
+  .name {
+    display: none;
+  }
+}

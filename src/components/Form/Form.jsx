@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import PhoneInput from 'react-phone-input-2';
 
 import s from './Form.module.css';
+import { Button } from '@material-ui/core';
 import { operations } from 'redux/contacts';
 import { getItems } from 'redux/contacts/contacts-selectors';
 import 'react-phone-input-2/lib/style.css';
@@ -104,13 +105,15 @@ function Form() {
           />
         </label>
         <div className={s.submit__box}>
-          <button
+          <Button
             className={s.form__button}
             type="submit"
             disabled={name === '' || number === ''}
+            color="primary"
+            variant="contained"
           >
             Add contact
-          </button>
+          </Button>
         </div>
       </motion.form>
     </div>

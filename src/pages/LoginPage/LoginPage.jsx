@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
 
+import logGif from '../../images/log.gif';
 import { Button, TextField } from '@material-ui/core';
 import s from './LoginPage.module.css';
 
@@ -31,12 +32,7 @@ export default function LoginPage() {
   return (
     <div className={s.loginBox}>
       <div className={s.gifBox}>
-        <img
-          src="https://i.gifer.com/P3p1.gif"
-          alt="loginGif"
-          width="169"
-          height="40"
-        />
+        <img src={logGif} alt="loginGif" width="169" height="40" />
       </div>
 
       <form onSubmit={handleSubmit} className={s.form} autoComplete="off">

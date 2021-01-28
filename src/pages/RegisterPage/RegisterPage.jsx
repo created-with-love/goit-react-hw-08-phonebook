@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
 
+import regImg from '../../images/reg.gif';
 import s from './RegisterPage.module.css';
 import { Button, TextField } from '@material-ui/core';
 
@@ -36,7 +37,7 @@ export default function RegisterPage() {
     <div className={s.regBox}>
       <div>
         <img
-          src="https://i.gifer.com/4yD.gif"
+          src={regImg}
           alt="registrationGif"
           className={s.regImg}
           width="320"

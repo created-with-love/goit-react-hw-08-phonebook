@@ -1,5 +1,7 @@
 import React from 'react';
 
+import homeSmall from '../../images/homeSmall.gif';
+import homeBig from '../../images/homeBig.gif';
 import s from './HomePage.module.css';
 
 const HomePage = () => (
@@ -13,16 +15,8 @@ const HomePage = () => (
       </span>
       <span className={s.titleDesc}>Simple. Secure. Free.</span>
     </div>
-    <img
-      src="https://i.gifer.com/fzUl.gif"
-      alt="HomePageLogo"
-      className={s.logo}
-    />
-    <img
-      src="https://i.gifer.com/3dAZ.gif"
-      alt="HomePageLogoBig"
-      className={s.logoBig}
-    />
+    <img src={homeSmall} alt="HomePageLogo" className={s.logo} />
+    <img src={homeBig} alt="HomePageLogoBig" className={s.logoBig} />
   </div>
 );
 

@@ -1,15 +1,22 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { Switch, Route } from 'react-router-dom';
-import { authOperations } from 'redux/auth';
-import HomePage from './pages/HomePage';
-import RegisterPage from './pages/RegisterPage';
-import LoginPage from './pages/LoginPage';
-import ContactsPage from './pages/ContactsPage';
+import React, { Suspense, lazy } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Switch } from 'react-router-dom';
+
 import Header from 'components/Header/Header';
+import PrivateRoute from './components/Routes/PrivateRoute';
+import PublicRoute from './components/Routes/PublicRoute';
+import Loader from './components/Loader';
+import { authOperations } from 'redux/auth';
+import authSelectors from 'redux/auth/auth-selectors';
+
+const HomePage = lazy(() => import('./pages/HomePage'));
+const LoginPage = lazy(() => import('./pages/LoginPage'));
+const ContactsPage = lazy(() => import('./pages/ContactsPage'));
+const RegisterPage = lazy(() => import('./pages/RegisterPage'));
 
 function App() {
   const dispatch = useDispatch();
+  const isFetchingUser = useSelector(authSelectors.getIsFetchingUser);
 
   React.useEffect(() => {
     dispatch(authOperations.getCurrentUser());
@@ -17,13 +24,32 @@ function App() {
 
   return (
     <>
-      <Header />
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route path="/register" component={RegisterPage} />
-        <Route path="/login" component={LoginPage} />
-        <Route path="/contacts" component={ContactsPage} />
-      </Switch>
+      {isFetchingUser ? (
+        <Loader />
+      ) : (
+        <>
+          <Header />
+          <Switch>
+            <Suspense fallback={<Loader />}>
+              <PublicRoute exact path="/">
+                <HomePage />
+              </PublicRoute>
+
+              <PublicRoute exact path="/register" restricted>
+                <RegisterPage />
+              </PublicRoute>
+
+              <PublicRoute exact path="/login" restricted>
+                <LoginPage />
+              </PublicRoute>
+
+              <PrivateRoute path="/contacts">
+                <ContactsPage />
+              </PrivateRoute>
+            </Suspense>
+          </Switch>
+        </>
+      )}
     </>
   );
 }

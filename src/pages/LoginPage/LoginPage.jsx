@@ -56,7 +56,7 @@ export default function LoginPage() {
           <TextField
             type="password"
             name="password"
-            id="outlined-basic"
+            id="outlined-basic2"
             value={password}
             label="Password"
             onChange={handleChange}

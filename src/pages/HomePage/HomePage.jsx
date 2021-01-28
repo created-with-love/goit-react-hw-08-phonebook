@@ -2,14 +2,6 @@ import React from 'react';
 
 import s from './HomePage.module.css';
 
-const styles = {
-  title: {
-    fontWeight: 500,
-    fontSize: 48,
-    textAlign: 'center',
-  },
-};
-
 const HomePage = () => (
   <div className={s.container}>
     <div className={s.titleContainer}>

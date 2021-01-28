@@ -61,7 +61,7 @@ export default function RegisterPage() {
           <TextField
             type="email"
             name="email"
-            id="outlined-basic"
+            id="outlined-basic2"
             value={email}
             label="Email"
             onChange={handleChange}
@@ -73,7 +73,7 @@ export default function RegisterPage() {
           <TextField
             type="password"
             name="password"
-            id="outlined-basic"
+            id="outlined-basic3"
             value={password}
             label="Password"
             onChange={handleChange}

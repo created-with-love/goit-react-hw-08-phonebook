@@ -11,7 +11,7 @@ export default function AuthNav() {
         className={s.link}
         activeClassName={s.activeLink}
       >
-        Registration
+        Sign up
       </NavLink>
       <NavLink
         to="/login"

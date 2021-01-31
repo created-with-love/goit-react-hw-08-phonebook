@@ -8,6 +8,7 @@ import PublicRoute from './components/Routes/PublicRoute';
 import Loader from './components/Loader';
 import { authOperations } from 'redux/auth';
 import authSelectors from 'redux/auth/auth-selectors';
+import Error from './components/Error';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
@@ -17,6 +18,7 @@ const RegisterPage = lazy(() => import('./pages/RegisterPage'));
 function App() {
   const dispatch = useDispatch();
   const isFetchingUser = useSelector(authSelectors.getIsFetchingUser);
+  const errorObj = useSelector(authSelectors.getError);
 
   React.useEffect(() => {
     dispatch(authOperations.getCurrentUser());
@@ -24,31 +26,29 @@ function App() {
 
   return (
     <>
-      {isFetchingUser ? (
-        <Loader />
-      ) : (
-        <>
-          <Header />
-          <Switch>
-            <Suspense fallback={<Loader />}>
-              <PublicRoute exact path="/">
-                <HomePage />
-              </PublicRoute>
+      <Header />
+      {isFetchingUser && <Loader />}
+      {errorObj && <Error error={errorObj} />}
+      {!isFetchingUser && !errorObj && (
+        <Switch>
+          <Suspense fallback={<Loader />}>
+            <PublicRoute exact path="/">
+              <HomePage />
+            </PublicRoute>
 
-              <PublicRoute exact path="/register" restricted>
-                <RegisterPage />
-              </PublicRoute>
+            <PublicRoute exact path="/register" restricted>
+              <RegisterPage />
+            </PublicRoute>
 
-              <PublicRoute exact path="/login" restricted>
-                <LoginPage />
-              </PublicRoute>
+            <PublicRoute exact path="/login" restricted>
+              <LoginPage />
+            </PublicRoute>
 
-              <PrivateRoute path="/contacts">
-                <ContactsPage />
-              </PrivateRoute>
-            </Suspense>
-          </Switch>
-        </>
+            <PrivateRoute path="/contacts">
+              <ContactsPage />
+            </PrivateRoute>
+          </Suspense>
+        </Switch>
       )}
     </>
   );

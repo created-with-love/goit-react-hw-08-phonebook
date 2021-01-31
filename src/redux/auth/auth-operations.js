@@ -16,26 +16,31 @@ const token = {
 // body : {email, password, password}
 const register = createAsyncThunk('auth/register', async credentials => {
   try {
-    const { data } = await axios.post('/users/signup', credentials);
-    token.set(data.token);
-    return data;
-  } catch (error) {}
+    const response = await axios.post('/users/signup', credentials);
+    token.set(response.data.token);
+    return response.data;
+  } catch (error) {
+    throw new Error(error);
+  }
 });
 
 // body : {email, password}
 const logIn = createAsyncThunk('auth/login', async credentials => {
   try {
-    const { data } = await axios.post('/users/login', credentials);
-    token.set(data.token);
-    return data;
-  } catch (error) {}
+    const response = await axios.post('/users/login', credentials);
+    return response.data;
+  } catch (error) {
+    throw new Error(error);
+  }
 });
 
 const logOut = createAsyncThunk('auth/logout', async () => {
   try {
     await axios.post('/users/logout');
     token.unset();
-  } catch (error) {}
+  } catch (error) {
+    throw new Error(error);
+  }
 });
 
 const getCurrentUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
@@ -54,7 +59,9 @@ const getCurrentUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
     //  data = {email, name}
     const { data } = await axios.get('/users/current');
     return data;
-  } catch (error) {}
+  } catch (error) {
+    return error;
+  }
 });
 
 const operations = {

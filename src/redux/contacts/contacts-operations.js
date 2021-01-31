@@ -1,6 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-//import { v4 as uuidv4 } from 'uuid';
 
 axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com';
 
@@ -9,10 +8,10 @@ export const fetchContacts = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const { data } = await axios.get('/contacts');
-      // const { data } = await axios.get('/contacts?_sort=id&_order=desc');
       return data;
     } catch (error) {
       return rejectWithValue(error);
+      // return new Error(error);
     }
   },
 );
@@ -23,7 +22,6 @@ export const addContact = createAsyncThunk(
     const contact = {
       name: user.name,
       number: user.number,
-      // id: uuidv4(),
     };
     try {
       await axios.post('/contacts', contact);

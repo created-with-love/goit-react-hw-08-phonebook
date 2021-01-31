@@ -50,7 +50,6 @@ const authSlice = createSlice({
       state.token = null;
     },
     [authOperations.logIn.rejected](state, action) {
-      console.log(action);
       state.user = { name: null, email: null };
       state.isLoggedIn = false;
       state.error = action.error;
@@ -63,9 +62,15 @@ const authSlice = createSlice({
       state.token = null;
     },
     [authOperations.getCurrentUser.rejected](state) {
+      state.user = { name: null, email: null };
+      state.isLoggedIn = false;
       state.isFetchingUser = false;
       state.token = null;
     },
+
+    // [authOperations.clearError.fulfilled](state) {
+    //   state.error = null;
+    // },
   },
 });
 

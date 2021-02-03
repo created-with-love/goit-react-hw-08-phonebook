@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Switch } from 'react-router-dom';
 
 import Header from 'components/Header/Header';
-import PrivateRoute from './components/Routes/PrivateRoute.js';
+import PrivateRoute from './components/Routes/PrivateRoute';
 import PublicRoute from './components/Routes/PublicRoute';
 import Loader from './components/Loader';
 import { authOperations } from 'redux/auth';

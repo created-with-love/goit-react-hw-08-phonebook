@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { authOperations } from 'redux/auth';
 
-// import { authSelectors } from 'redux/auth';
 import regImg from 'images/reg.gif';
 import s from './RegisterPage.module.css';
 import { Button, TextField } from '@material-ui/core';
@@ -12,8 +11,6 @@ const RegisterPage = (): JSX.Element => {
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-
-  // const errorObj = useSelector(authSelectors.getError);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const {

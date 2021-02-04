@@ -5,7 +5,7 @@ axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com';
 
 interface IUser {
   name: string;
-  number: string | null | undefined;
+  number: string | null;
 }
 
 export const fetchContacts = createAsyncThunk(

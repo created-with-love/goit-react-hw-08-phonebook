@@ -69,17 +69,13 @@ const authSlice = createSlice({
       state.user = { name: null, email: null };
       state.isLoggedIn = false;
       state.error = action.error;
+      state.isFetchingUser = false;
       state.token = null;
     },
     [authOperations.register.rejected.toString()](state, action) {
       state.user = { name: null, email: null };
       state.isLoggedIn = false;
       state.error = action.error;
-      state.token = null;
-    },
-    [authOperations.getCurrentUser.rejected.toString()](state) {
-      state.user = { name: null, email: null };
-      state.isLoggedIn = false;
       state.isFetchingUser = false;
       state.token = null;
     },

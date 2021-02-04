@@ -8,7 +8,8 @@ import PublicRoute from './components/Routes/PublicRoute';
 import Loader from './components/Loader';
 import { authOperations } from 'redux/auth';
 import authSelectors from 'redux/auth/auth-selectors';
-import Error from './components/Error';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
@@ -24,12 +25,41 @@ const App = (): JSX.Element => {
     dispatch(authOperations.getCurrentUser());
   }, [dispatch]);
 
+  React.useEffect(() => {
+    if (errorObj) {
+      dispatch(authOperations.clearError());
+      console.log(errorObj);
+
+      toast.dark(`🦄 ${errorObj.message}`, {
+        position: 'top-right',
+        autoClose: 3500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  }, [errorObj, dispatch]);
+
   return (
     <>
       <Header />
+
+      <ToastContainer
+        position="top-right"
+        autoClose={3500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+
       {isFetchingUser && <Loader />}
-      {errorObj && <Error error={errorObj} />}
-      {!isFetchingUser && !errorObj && (
+      {!isFetchingUser && (
         <Switch>
           <Suspense fallback={<Loader />}>
             <PublicRoute exact path="/">

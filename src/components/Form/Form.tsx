@@ -24,7 +24,7 @@ const variants: IVariants = {
   },
 };
 
-type Number = string | null | undefined;
+type Number = string | null;
 
 const Form = (): JSX.Element => {
   const contacts: IContact[] = useSelector(getItems);
@@ -54,7 +54,7 @@ const Form = (): JSX.Element => {
 
   const reset = (): void => {
     setName('');
-    setNumber(null);
+    setNumber('+380');
   };
 
   const validateContact = (
@@ -64,7 +64,14 @@ const Form = (): JSX.Element => {
     if (contacts.some(({ name }) => name === contactName)) {
       alert(`${contactName} is already in contacts.`);
       return false;
-    } else return true;
+    }
+
+    if (!number || number.length < 7) {
+      alert(`Number is too short`);
+      return false;
+    }
+
+    return true;
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
@@ -102,7 +109,6 @@ const Form = (): JSX.Element => {
         <label className={s.phoneLabel}>
           <p className={s.form__label}>Number</p>
           <PhoneInput
-            // name="number"
             value={number}
             onChange={handlePhoneInput}
             country={'ua'}
@@ -118,7 +124,7 @@ const Form = (): JSX.Element => {
           <Button
             className={s.form__button}
             type="submit"
-            disabled={name === '' || number === null}
+            disabled={name === '' || number === null || number.length < 7}
             color="primary"
             variant="contained"
           >

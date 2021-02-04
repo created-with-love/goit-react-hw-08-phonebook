@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { Data, IState, IUser } from 'types/Contacts.interface';
 
 axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com';
 
@@ -20,7 +21,8 @@ const register = createAsyncThunk(
     try {
       const response = await axios.post('/users/signup', credentials);
       token.set(response.data.token);
-      return response.data;
+
+      return response.data as Promise<Data>;
     } catch (error) {
       throw new Error(error);
     }
@@ -34,7 +36,7 @@ const logIn = createAsyncThunk(
     try {
       const response = await axios.post('/users/login', credentials);
       token.set(response.data.token);
-      return response.data;
+      return response.data as Promise<Data>;
     } catch (error) {
       throw new Error(error);
     }
@@ -51,7 +53,7 @@ const logOut = createAsyncThunk('auth/logout', async () => {
 });
 
 const getCurrentUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
-  const state: any = thunkAPI.getState();
+  const state = thunkAPI.getState() as IState;
   const persistedToken = state.auth.token;
 
   // if token is null we won`t fetch info about user from the server
@@ -64,7 +66,7 @@ const getCurrentUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
 
   try {
     //  data = {email, name}
-    const { data } = await axios.get('/users/current');
+    const { data } = await axios.get<IUser>('/users/current');
     return data;
   } catch (error) {
     return error;

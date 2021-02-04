@@ -8,8 +8,8 @@ import Loader from '../Loader';
 import { operations } from 'redux/contacts';
 import { filteredContacts, isLoading } from 'redux/contacts/contacts-selectors';
 import { authSelectors } from 'redux/auth';
-import { IContact } from '../../types/Contacts.interface';
-import { IVariants } from '../../types/Variants.interface';
+import { IContact } from 'types/Contacts.interface';
+import { IVariants } from 'types/Variants.interface';
 
 const s = require('./Contacts.module.css');
 
@@ -24,7 +24,7 @@ const variants: IVariants = {
   },
 };
 
-const Contacts: React.FC = () => {
+const Contacts = (): JSX.Element => {
   const dispatch = useDispatch();
   const loading: boolean = useSelector(isLoading);
   const isLoggedIn: boolean = useSelector(authSelectors.getIsLoggedIn);

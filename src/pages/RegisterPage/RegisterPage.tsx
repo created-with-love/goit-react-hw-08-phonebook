@@ -1,13 +1,13 @@
-import { useState, FC } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
 
 // import { authSelectors } from 'redux/auth';
-import regImg from '../../images/reg.gif';
+import regImg from 'images/reg.gif';
 import s from './RegisterPage.module.css';
 import { Button, TextField } from '@material-ui/core';
 
-const RegisterPage: FC = () => {
+const RegisterPage = (): JSX.Element => {
   const dispatch = useDispatch();
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
@@ -15,7 +15,7 @@ const RegisterPage: FC = () => {
 
   // const errorObj = useSelector(authSelectors.getError);
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const {
       target: { name, value },
     } = e;
@@ -31,7 +31,7 @@ const RegisterPage: FC = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     dispatch(authOperations.register({ name, email, password }));
     setName('');

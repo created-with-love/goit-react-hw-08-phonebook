@@ -8,8 +8,8 @@ import { Button } from '@material-ui/core';
 import { operations } from 'redux/contacts';
 import { getItems } from 'redux/contacts/contacts-selectors';
 import 'react-phone-input-2/lib/style.css';
-import { IVariants } from '../../types/Variants.interface';
-import { IContact } from '../../types/Contacts.interface';
+import { IVariants } from 'types/Variants.interface';
+import { IContact } from 'types/Contacts.interface';
 
 const s = require('./Form.module.css');
 
@@ -26,7 +26,7 @@ const variants: IVariants = {
 
 type Number = string | null | undefined;
 
-const Form: React.FC = () => {
+const Form = (): JSX.Element => {
   const contacts: IContact[] = useSelector(getItems);
   const dispatch = useDispatch();
 
@@ -52,19 +52,22 @@ const Form: React.FC = () => {
 
   const handlePhoneInput = (phone: Number): void => setNumber(phone);
 
-  const reset = () => {
+  const reset = (): void => {
     setName('');
     setNumber(null);
   };
 
-  const validateContact = (contactName: string, contacts: IContact[]) => {
+  const validateContact = (
+    contactName: string,
+    contacts: IContact[],
+  ): boolean => {
     if (contacts.some(({ name }) => name === contactName)) {
       alert(`${contactName} is already in contacts.`);
       return false;
     } else return true;
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     const isContactValid: boolean = validateContact(name, contacts);
 

@@ -5,6 +5,15 @@ export interface IContact {
   length: number;
 }
 
+export interface IUser {
+  name: string;
+  email: string;
+}
+
+export interface IToken {
+  token: string | null;
+}
+
 export interface IAuth {
   user: { name: string | null; email: string | null };
   token: null | string;
@@ -16,8 +25,14 @@ export interface IAuth {
 export interface IState {
   auth: IAuth;
   contacts: {
+    error: any;
     items: IContact[];
     filter: string;
     loading: boolean;
   };
+}
+
+export interface Data {
+  token: string;
+  user: IUser;
 }

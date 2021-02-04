@@ -12,7 +12,7 @@ export const fetchContacts = createAsyncThunk(
   'contacts/fetchContacts',
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get('/contacts');
+      const { data } = await axios.get<IUser[]>('/contacts');
       return data;
     } catch (error) {
       return rejectWithValue(error);
@@ -24,14 +24,10 @@ export const fetchContacts = createAsyncThunk(
 export const addContact = createAsyncThunk(
   'contacts/addContact',
   async (user: IUser, { rejectWithValue }) => {
-    const contact = {
-      name: user.name,
-      number: user.number,
-    };
     try {
-      await axios.post('/contacts', contact);
+      await axios.post('/contacts', user);
       // return contact;
-      const { data } = await axios.get('/contacts');
+      const { data } = await axios.get<IUser[]>('/contacts');
       return data;
     } catch (error) {
       return rejectWithValue(error);

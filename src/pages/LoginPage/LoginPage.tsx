@@ -2,16 +2,16 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
 
-import logGif from '../../images/log.gif';
+import logGif from 'images/log.gif';
 import { Button, TextField } from '@material-ui/core';
 import s from './LoginPage.module.css';
 
-export default function LoginPage() {
+export default function LoginPage(): JSX.Element {
   const dispatch = useDispatch();
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const {
       target: { name, value },
     } = e;
@@ -25,7 +25,7 @@ export default function LoginPage() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     dispatch(authOperations.logIn({ email, password }));
     setEmail('');

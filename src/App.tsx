@@ -15,9 +15,9 @@ const LoginPage = lazy(() => import('./pages/LoginPage'));
 const ContactsPage = lazy(() => import('./pages/ContactsPage'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage'));
 
-const App: React.FC = () => {
+const App = (): JSX.Element => {
   const dispatch = useDispatch();
-  const isFetchingUser: boolean = useSelector(authSelectors.getIsFetchingUser);
+  const isFetchingUser = useSelector(authSelectors.getIsFetchingUser);
   const errorObj = useSelector(authSelectors.getError);
 
   React.useEffect(() => {

@@ -7,7 +7,7 @@ import AuthNav from '../AuthNav';
 
 import s from './Header.module.css';
 
-const Header: React.FC = () => {
+const Header = (): JSX.Element => {
   const isLoggedIn: boolean = useSelector(authSelectors.getIsLoggedIn);
   return (
     <header className={s.header}>

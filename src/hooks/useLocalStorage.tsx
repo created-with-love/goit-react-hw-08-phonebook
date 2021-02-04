@@ -1,6 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Dispatch } from 'react';
+import { IContact } from 'types/Contacts.interface';
 
-export default function useLocalStorage(key: string, defaultValue: string) {
+type ILocalStorage = [state: IContact[], setState: Dispatch<any>];
+
+export default function useLocalStorage(
+  key: string,
+  defaultValue: string,
+): ILocalStorage {
   const local = window.localStorage.getItem(key) as string;
 
   const [state, setState] = useState(() => {
@@ -13,7 +19,7 @@ export default function useLocalStorage(key: string, defaultValue: string) {
     if (localstorageArrayLength) {
       setState(defaultValue);
     }
-  }, [defaultValue, key, state]);
+  }, [defaultValue, key, local, state]);
 
   return [state, setState];
 }

@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { authSelectors, authOperations } from '../../redux/auth';
+import { authSelectors, authOperations } from 'redux/auth';
 import { Button } from '@material-ui/core';
 
 import s from './UserMenu.module.css';
 
-export default function UserMenu() {
+export default function UserMenu(): JSX.Element {
   const dispatch = useDispatch();
-  const name: string | null = useSelector(authSelectors.getUsername);
+  const name = useSelector(authSelectors.getUsername);
 
   return (
     <div className={s.container}>

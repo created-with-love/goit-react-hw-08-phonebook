@@ -5,8 +5,8 @@ import { authSelectors } from 'redux/auth';
 
 import s from './Navigation.module.css';
 
-const Navigation: React.FC = () => {
-  const isLoggedIn: boolean = useSelector(authSelectors.getIsLoggedIn);
+const Navigation = (): JSX.Element => {
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
 
   return (
     <nav className={s.navBar}>

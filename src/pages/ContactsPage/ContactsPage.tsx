@@ -1,11 +1,11 @@
 import React from 'react';
 
-import Form from '../../components/Form';
-import Section from '../../components/Section';
-import Contacts from '../../components/Contacts';
-import Filter from '../../components/Filter';
+import Form from 'components/Form';
+import Section from 'components/Section';
+import Contacts from 'components/Contacts';
+import Filter from 'components/Filter';
 
-function ContactsPage() {
+function ContactsPage(): JSX.Element {
   return (
     <>
       <Section title="Phonebook">

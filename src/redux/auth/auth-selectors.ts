@@ -1,4 +1,4 @@
-import { IState } from '../../types/Contacts.interface';
+import { IState } from 'types/Contacts.interface';
 
 const getIsLoggedIn = (state: IState) => state.auth.isLoggedIn as boolean;
 const getUsername = (state: IState) => state.auth.user?.name as string | null;

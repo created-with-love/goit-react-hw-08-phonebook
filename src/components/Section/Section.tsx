@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 import s from './Section.module.css';
-import { IVariants } from '../../types/Variants.interface';
+import { IVariants } from 'types/Variants.interface';
 
 const variants: IVariants = {
   hidden: {
@@ -20,7 +20,7 @@ interface ISection {
   children?: React.ReactNode;
 }
 
-const Section = ({ title, children }: ISection) => (
+const Section = ({ title, children }: ISection): JSX.Element => (
   <section className={s.container}>
     <motion.h2
       initial="hidden"

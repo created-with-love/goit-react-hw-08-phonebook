@@ -1,10 +1,10 @@
 import React from 'react';
 
-import homeSmall from '../../images/homeSmall.gif';
-import homeBig from '../../images/homeBig.gif';
+import homeSmall from 'images/homeSmall.gif';
+import homeBig from 'images/homeBig.gif';
 import s from './HomePage.module.css';
 
-const HomePage: React.FC = () => (
+const HomePage = (): JSX.Element => (
   <div className={s.container}>
     <div className={s.titleContainer}>
       <h1 className={s.title}>

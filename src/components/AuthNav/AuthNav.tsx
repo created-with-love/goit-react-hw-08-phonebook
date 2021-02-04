@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 const s = require('./AuthNav.module.css');
 
-export default function AuthNav() {
+export default function AuthNav(): JSX.Element {
   return (
     <div>
       <NavLink
